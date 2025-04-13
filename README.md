@@ -1,39 +1,48 @@
-# BIBD-Based Diagnostic and Pairwise Analysis for Machine Learning Models
+# BIBD4ML: Balanced Incomplete Block Design for Machine Learning Model Comparison
 
-This module provides a diagnostic tool for visualizing the effect of **Box–Cox transformations** on **pairwise model comparisons** under a **Balanced Incomplete Block Design (BIBD)** framework. It also includes **residual analysis before and after transformation** to guide transformation decisions.
+This repository contains a Jupyter Notebook (`BIBD4ML.ipynb`) showcasing how to apply **Balanced Incomplete Block Design (BIBD)** in evaluating and comparing classical machine learning models across a variety of public datasets.
 
-## Features
+## 📊 Overview
 
-- 📈 Plot pairwise **t-statistics vs. Box–Cox lambda**.
-- 🔍 Compute and display **Tukey’s significance threshold**.
-- 📉 Show **residuals vs. fitted values**:
-  - Before transformation.
-  - After transformation using the **optimal Box–Cox lambda (MLE)**.
+The notebook implements model comparisons on ten well-known datasets using BIBD principles, with classical machine learning models such as:
 
-## Function
+- **Logistic Regression**
+- **Linear Discriminant Analysis (LDA)**
+- **Support Vector Machine (SVM)**
+- **k-Nearest Neighbors (k-NN)**
+- **Decision Tree**
 
-### `plot_pairwise_t_vs_lambda_with_residuals(...)`
+Each dataset is analyzed by selecting a subset of models (incomplete block), and comparisons are made using pairwise t-tests and visual diagnostics (e.g., residual plots and Box-Cox transformation effects).
 
-**Description:**  
-Generates diagnostic plots for BIBD-based analysis of machine learning model performance, with optional Box–Cox transformation of response variables.
+## 📁 Datasets Used
 
-**Parameters:**
+The following datasets are included in the analysis:
 
-| Parameter         | Type          | Description                                                                 |
-|------------------|---------------|-----------------------------------------------------------------------------|
-| `response_matrix`| `np.ndarray`  | Response matrix (treatments × blocks), use `np.nan` for missing entries    |
-| `treatment_names`| `list[str]`   | Names of the treatments (default: `["M1", ..., "Mt"]`)                     |
-| `k`              | `int`         | Number of treatments per block in BIBD (default: `3`)                      |
-| `lambda_bibd`    | `float`       | Lambda value for BIBD ANOVA (default: `3`)                                 |
-| `alpha`          | `float`       | Significance level for Tukey threshold (default: `0.05`)                   |
+1. **Iris** - LDA, SVM, Logistic Regression  
+2. **Wine** - Decision Tree, LDA, k-NN  
+3. **Wine Quality** - SVM, Logistic Regression, k-NN  
+4. **Adult Census Income** - SVM, LDA, k-NN  
+5. **Bank Marketing** - SVM, LDA, Decision Tree  
+6. **Breast Cancer Wisconsin** - Decision Tree, k-NN, LDA  
+7. **Mushroom** - SVM, Logistic Regression, k-NN  
+8. **Car Evaluation** - Logistic Regression, LDA, k-NN  
+9. **Heart Disease** - Logistic Regression, LDA, Decision Tree  
+10. **Spambase** - SVM, k-NN, Decision Tree
 
-**Example Usage:**
+## 📈 Analysis Techniques
 
-```python
-plot_pairwise_t_vs_lambda_with_residuals(
-    response_matrix=response_matrix,
-    treatment_names=['SVM', 'LR', 'LDA', 'DT', 'kNN'],
-    k=3,
-    lambda_bibd=3,
-    alpha=0.05
-)
+- **Box-Cox Transformation** to stabilize variance.
+- **Pairwise t-statistics** to compare model performance.
+- **Tukey's HSD** to determine significant differences.
+- **Residual Diagnostics** for model fit validation.
+
+## 🧪 Statistical Methodology
+
+This project leverages the structure of a BIBD (with parameters \(v, b, r, k, \lambda\)) to reduce the number of model comparisons while maintaining balanced inference power. It’s particularly helpful in experimental settings where exhaustive pairwise model evaluation is computationally expensive.
+
+## 📦 Requirements
+
+To run the notebook, install the following Python packages:
+
+```bash
+pip install ucimlrepo scikit-learn scipy numpy pandas matplotlib seaborn
