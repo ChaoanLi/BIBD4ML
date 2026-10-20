@@ -73,3 +73,8 @@ they are not a lock of every transitive dependency.
   training/prediction times depend on the machine and software environment.
 - Successful execution verifies that the notebook runs in the tested environment;
   it is not an independent validation of the statistical conclusions.
+
+## License
+
+The code is available under the [MIT License](LICENSE). External datasets retain
+their original licenses and terms.
