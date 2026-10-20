@@ -42,19 +42,34 @@ This project leverages the structure of a BIBD (with parameters \(v, b, r, k, \l
 
 ## 📦 Requirements
 
-To run the notebook, install the following Python packages:
+The full notebook was executed with Python 3.12 and the versions in
+`requirements.txt` on 2026-10-20 (141 code cells, no cell execution errors).
 
-```bash
-pip install ucimlrepo scikit-learn scipy numpy pandas matplotlib seaborn
-```
-
-## Running the notebook
-
-Clone this repository, install the packages listed above and Jupyter, then open the notebook:
-
-```bash
-python -m pip install jupyter
+```sh
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 jupyter notebook BIBD4ML.ipynb
 ```
 
-Run the cells in order. Data retrieval requires network access. The repository also includes the project report, result table, and diagnostic plots.
+On Windows, activate the environment with `.venv\Scripts\Activate.ps1`.
+Run the cells in order; UCI data retrieval requires network access. The repository
+also includes the project report, result table, and diagnostic plots.
+
+An unrestricted installation using pandas 3 failed in the Car Evaluation
+classification section with `Unknown label type: unknown`. The tested environment
+uses pandas 2.3.3. The pinned direct dependencies record this working environment;
+they are not a lock of every transitive dependency.
+
+## Reproducibility limits
+
+- The final analyses use numeric matrices recorded in cells 138–140, rather than
+  automatically collecting the model-training results above them. Re-running the
+  notebook does not automatically replace those historical measurements.
+- Several cross-validation calls standardize the full feature matrix before
+  splitting folds. Preprocessing needs to be fitted within each fold before
+  those scores can be interpreted as validation without preprocessing leakage.
+- The shuffled cross-validation splitter has no fixed random seed. Measured
+  training/prediction times depend on the machine and software environment.
+- Successful execution verifies that the notebook runs in the tested environment;
+  it is not an independent validation of the statistical conclusions.

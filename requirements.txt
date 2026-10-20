@@ -1,0 +1,9 @@
+# Verified with Python 3.12 on 2026-10-20.
+numpy==2.5.4
+pandas==2.3.3
+scipy==1.18.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+seaborn==0.13.2
+ucimlrepo==0.0.7
+jupyter==1.1.1
