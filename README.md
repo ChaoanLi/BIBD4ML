@@ -46,3 +46,15 @@ To run the notebook, install the following Python packages:
 
 ```bash
 pip install ucimlrepo scikit-learn scipy numpy pandas matplotlib seaborn
+```
+
+## Running the notebook
+
+Clone this repository, install the packages listed above and Jupyter, then open the notebook:
+
+```bash
+python -m pip install jupyter
+jupyter notebook BIBD4ML.ipynb
+```
+
+Run the cells in order. Data retrieval requires network access. The repository also includes the project report, result table, and diagnostic plots.
